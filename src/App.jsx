@@ -1,21 +1,16 @@
-import React from 'react'
-import Home from './components/Home'
-import MasterForm from './components/MasterForm'
-import AddOffice from './components/AddOffice'
-import {Routes, Route} from "react-router-dom";
-import Sidebar from './components/Sidebars';
+import React from 'react';
+import {Routes, Route} from 'react-router-dom';
+import ViewForm from './components/ViewForm';
+import FormDeatils from './components/FormDetails';
 
-const App = () => {
+
+function App() {
   return (
-    <div>
-      {/* <Routes>
-        <Route path='#' element ={<Home/>}/>
-        <Route path='/mas' element ={<MasterForm/>}/>
-        <Route path='#' element ={<AddOffice/>}/>     
-      </Routes> */}
-      <Sidebar/>
-    </div>
+    <Routes>
+      <Route path="/" element={<ViewForm />} />
+      <Route path="/FormDetails" element={<FormDeatils />} />
+    </Routes>
   )
 }
 
-export default App
+export default App;
