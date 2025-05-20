@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ViewForm.css'; 
+=======
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './ViewForm.css'; // Optional: add custom styles here
+import axios from 'axios'
+>>>>>>> 287778dfad057c7fb720599d10df688a1e87c885
 
 function ViewForm() {
+  const [office,setOffice]=useState([])
   const [selectedOffice, setSelectedOffice] = useState('');
   const navigate = useNavigate();
 
@@ -13,6 +21,19 @@ function ViewForm() {
       alert('Please select an office');
     }
   };
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get("http://localhost:5000/getinsuranceform");
+        setOffice(res.data); // Fixed this line
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    }
+
+    getData();
+  }, []);
 
   return (
     <div className="container">
@@ -26,8 +47,11 @@ function ViewForm() {
             onChange={(e) => setSelectedOffice(e.target.value)}
           >
             <option value="">-- Select Office --</option>
-            <option value="Naziya Sheikh">Naziya Sheikh</option>
-            <option value="Relief Dental Clinic">Relief Dental Clinic</option>
+            {office.map((n) => (
+          <option key={n._id} value={n._id}>
+            {n.name}
+          </option>
+        ))}
           </select>
         </div>
 
