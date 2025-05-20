@@ -9,6 +9,19 @@ const EditForm = () => {
     setSelectedOffice(e.target.value);
   };
 
+  useEffect(() => {
+    async function addData() {
+      try {
+        const res = await axios.get("http://localhost:5000/addinsuranceform");
+        setOffice(res.data); // Fixed this line
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    }
+
+    addData();
+  }, []);
+
   return (
     <div className="container">
       <div className="edit-form">
