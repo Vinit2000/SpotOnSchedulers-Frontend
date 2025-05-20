@@ -1,0 +1,49 @@
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-field {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.custom-label-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.custom-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
