@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './ViewForm.css'; 
-=======
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ViewForm.css'; // Optional: add custom styles here
 import axios from 'axios'
->>>>>>> 287778dfad057c7fb720599d10df688a1e87c885
 
 function ViewForm() {
   const [office,setOffice]=useState([])
