@@ -3,19 +3,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './FormDetails.css';
 
 const FormDetails = () => {
-<<<<<<< HEAD
- const [formData, setFormData] = useState({
-=======
   const [formData, setFormData] = useState({
->>>>>>> 09639ae3d9af7d70434bb65bd72b4aa8d790fbd7
     name:'',
     representativeName:'',
     reference:'',
     phoneNumber:'',
     patientId:''
   });
-<<<<<<< HEAD
-=======
   const location = useLocation();
   const navigate = useNavigate();
   const selectedOffice = location.state?.selectedOffice || "";
@@ -23,7 +17,6 @@ const FormDetails = () => {
   // If user opens FormDetails directly, redirect back to ViewForm
   if (!selectedOffice) {
     navigate('/');
->>>>>>> 09639ae3d9af7d70434bb65bd72b4aa8d790fbd7
     return null;
   }
 
