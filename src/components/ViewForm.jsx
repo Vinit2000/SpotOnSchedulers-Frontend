@@ -8,14 +8,6 @@ function ViewForm() {
   const [selectedOffice, setSelectedOffice] = useState('');
   const navigate = useNavigate();
 
-  // const handleSubmit = () => {
-  //   if (selectedOffice !== '') {
-  //     navigate('/FormDetails', { state: { selectedOffice } });
-  //   } else {
-  //     alert('Please select an office');
-  //   }
-  // };
-
   useEffect(() => {
     async function getData() {
       try {
