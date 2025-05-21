@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './FormDetails.css';
 
 const FormDetails = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const selectedOffice = location.state?.selectedOffice || "";
-
-  // If user opens FormDetails directly, redirect back to ViewForm
-  if (!selectedOffice) {
-    navigate('/');
+ const [formData, setFormData] = useState({
+    name:'',
+    representativeName:'',
+    reference:'',
+    phoneNumber:'',
+    patientId:''
+  });
     return null;
   }
 
