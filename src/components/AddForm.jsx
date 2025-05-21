@@ -8,6 +8,19 @@ function AddForm() {
     console.log('Form submitted');
   };
 
+  useEffect(() => {
+    async function addData() {
+      try {
+        const res = await axios.get("http://localhost:5000/addinsuranceform");
+        setOffice(res.data); // Fixed this line
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    }
+
+    addData();
+  }, []);
+
   return (
     <div className="form-container">
       <h2>Add Dental Office</h2>
