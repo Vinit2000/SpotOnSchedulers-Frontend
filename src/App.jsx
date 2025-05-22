@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import ViewForm from './components/ViewForm';
@@ -21,6 +22,6 @@ function App() {
       </div>
     </div>
   );
-}
 
+}
 export default App;
