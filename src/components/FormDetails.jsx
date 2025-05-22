@@ -15,7 +15,7 @@ const FormDetails = () => {
   const navigate = useNavigate();
   const selectedOffice = location.state?.selectedOffice || "";
 
-  // If user opens FormDetails directly, redirect back to ViewForm
+  
   if (!selectedOffice) {
     navigate('/');
     return null;
