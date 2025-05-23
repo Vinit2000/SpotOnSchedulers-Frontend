@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './FormDetails.css';
 import axios from 'axios'
@@ -15,11 +15,16 @@ const FormDetails = () => {
   const navigate = useNavigate();
   const selectedOffice = location.state?.selectedOffice || "";
 
-  
+useEffect(() => {
   if (!selectedOffice) {
     navigate('/');
-    return null;
   }
+}, [selectedOffice, navigate]);
+
+if (!selectedOffice) {
+  return null;
+}
+
 
 const handleChange = (e) =>{
     const {name, value} = e.target;

@@ -6,6 +6,7 @@ import ViewForm from './components/ViewForm';
 import FormDetails from './components/FormDetails';
 import EditInsuranceForm from './components/EditIsuranceForm';
 import VerificationForm from './components/VerificationForm';
+import AddForm from './components/AddForm';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/form-details" element={<FormDetails />} />
           <Route path="/edit-insurance-form" element={<EditInsuranceForm />} />
           <Route path="/verification-form" element={<VerificationForm />} />
+          <Route path="/add-dental-office" element={<AddForm/>}/>
         </Routes>
       </div>
     </div>

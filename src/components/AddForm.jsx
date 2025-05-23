@@ -1,25 +1,41 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './AddForm.css';
+import axios from 'axios'
 
 function AddForm() {
+  const [formData,setFormData]=useState({
+    name:'',
+    email:'',
+    password:'',
+    confirmPassword:''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    console.log('Form submitted');
+    // console.log('Form submitted');
   };
 
-  useEffect(() => {
-    async function addData() {
-      try {
-        const res = await axios.get("http://localhost:5000/addinsuranceform");
-        setOffice(res.data); // Fixed this line
-      } catch (error) {
-        console.log("Error getting data", error);
-      }
+  const addDentalForm=async()=>{
+    try{
+      const res= await axios.post("http://localhost:5000/adddentalform",formData);
+      setFormData({
+        name:'',
+        email:'',
+        password:'',
+        confirmPassword:''
+      })
+      alert("Form submitted");
     }
-
-    addData();
-  }, []);
+    catch(error){
+      console.log("Error sumitting data");
+    }
+  }
 
   return (
     <div className="form-container">
@@ -29,23 +45,23 @@ function AddForm() {
         <div className="form-row">
           <div className="form-group">
             <label className="required">Name</label>
-            <input id="name" name="name" type="text" required />
+            <input id="name" name="name" type="text" required value={formData.name} onChange={handleInputChange}/>
           </div>
           <div className="form-group">
             <label className="required" >Email</label>
-            <input id="email" name="email" type="text" required />
+            <input id="email" name="email" type="text" required value={formData.email} onChange={handleInputChange}/>
           </div>
           <div className="form-group">
             <label className="required">Password</label>
-            <input id="password" name="password" type="text" required />
+            <input id="password" name="password" type="text" required value={formData.password} onChange={handleInputChange}/>
           </div>
           <div className="form-group">
             <label className="required" >Confirm Password</label>
-            <input id="confirmPassword" name="confirmPassword" type="text" required />
+            <input id="confirmPassword" name="confirmPassword" type="text" required value={formData.confirmPassword} onChange={handleInputChange}/>
           </div>
         </div>
         <div className="button-container">
-          <button type="submit">Submit Form</button>
+          <button type="submit" onClick={addDentalForm}>Submit Form</button>
         </div>
       </form>
     </div>
