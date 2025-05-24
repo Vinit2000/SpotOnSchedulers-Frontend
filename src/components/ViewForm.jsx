@@ -24,7 +24,7 @@ function ViewForm() {
   const handleOfficeChange = (e) =>{
     const selectedOffice = e.target.value;
     if(selectedOffice !== ''){
-      navigate('/FormDetails', {state:{selectedOffice}});
+      navigate('/form-details', {state:{selectedOffice}});
     }
   }
 

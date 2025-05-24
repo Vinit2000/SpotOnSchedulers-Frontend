@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './FormDetails.css';
+import axios from 'axios'
 
 const FormDetails = () => {
   const [formData, setFormData] = useState({
@@ -14,11 +15,16 @@ const FormDetails = () => {
   const navigate = useNavigate();
   const selectedOffice = location.state?.selectedOffice || "";
 
-  
+useEffect(() => {
   if (!selectedOffice) {
     navigate('/');
-    return null;
   }
+}, [selectedOffice, navigate]);
+
+if (!selectedOffice) {
+  return null;
+}
+
 
 const handleChange = (e) =>{
     const {name, value} = e.target;
@@ -28,15 +34,22 @@ const handleChange = (e) =>{
     }));
   };
 
-  const handleSubmit = () =>{
-    alert("Form Submitted");
-setFormData({
-  name:'',
-    representativeName:'',
-    reference:'',
-    phoneNumber:'',
-    patientId:''
-})
+  
+  const handleSubmit=async()=>{
+    try{
+      const res=await axios.post("http://localhost:5000/addinsuranceform",formData);
+      alert("Form Submitted");
+      setFormData({
+        name:'',
+        representativeName:'',
+        reference:'',
+        phoneNumber:'',
+        patientId:''
+      })
+    }
+    catch(error){
+      console.log("Error submitting data");
+    }
   }
 
   return (
