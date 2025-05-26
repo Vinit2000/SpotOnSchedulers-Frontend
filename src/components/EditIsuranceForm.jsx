@@ -10,14 +10,14 @@ const EditInsuranceForm = () => {
   const [selectedOffice, setSelectedOffice] = useState('');
 
   const [formFields, setFormFields] = useState([
-    { id: 1, label: 'Date of Verification', disabled: false, required: false, customLabel: '' },
+    // { id: 1, label: 'Date of Verification', disabled: false, required: false, customLabel: '' },
     { id: 2, label: 'Rep Name', disabled: false, required: false, customLabel: '' },
     { id: 3, label: 'Reference #', disabled: false, required: false, customLabel: '' },
     { id: 4, label: 'Patient Name', disabled: false, required: false, customLabel: '' },
-    { id: 5, label: 'Patient DOB', disabled: false, required: false, customLabel: '' },
+    // { id: 5, label: 'Patient DOB', disabled: false, required: false, customLabel: '' },
     { id: 6, label: 'Phone Number', disabled: false, required: false, customLabel: '' },
     { id: 7, label: 'Subscriber', disabled: false, required: false, customLabel: '' },
-    { id: 8, label: 'Subscriber DOB', disabled: false, required: false, customLabel: '' },
+    // { id: 8, label: 'Subscriber DOB', disabled: false, required: false, customLabel: '' },
   ]);
 
   const handleFieldChange = (index, field, value) => {
@@ -40,7 +40,7 @@ const EditInsuranceForm = () => {
   }, []);
 
   return (
-    <div className="form-container">
+    <div className="form-container-1">
       <h1 className="title">Select Form Field</h1>
 
       <div className="form-layout">

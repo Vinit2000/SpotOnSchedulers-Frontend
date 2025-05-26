@@ -45,6 +45,7 @@ function App() {
       <div style={{ flexGrow: 1, padding: '20px' }}>
         <Routes>
           <Route path="/" element={<div>Welcome to Dashboard</div>} />
+          <Route path='/master-form' element={<MasterForm/>}/>
           <Route path="/view-insurance-form" element={<ViewForm />} />
           <Route path="/form-details" element={<FormDetails />} />
           <Route path="/edit-insurance-form" element={<EditInsuranceForm />} />
