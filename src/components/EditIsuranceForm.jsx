@@ -29,7 +29,7 @@ const EditInsuranceForm = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("http://localhost:5000/getinsuranceform");
+        const res = await axios.get("http://localhost:5000/getdentalform");
         setOffices(res.data); // Fixed this line
       } catch (error) {
         console.log("Error getting data", error);
@@ -59,7 +59,7 @@ const EditInsuranceForm = () => {
 
         {selectedOffice && (
           <div className="fields-container">
-            <h2 className="subtitle">Verification Form </h2>
+            <h2 className="subtitle">Verification Form for {selectedOffice}</h2>
 
             <div className="fields-grid">
               {formFields.map((field, index) => (
