@@ -52,14 +52,14 @@ const EditInsuranceForm = () => {
           >
             <option value="">Select Office</option>
             {offices.map((office, index) => (
-              <option key={office._id} value={office.name}>{office.name}</option>
+              <option key={index} value={office}>{office.name}</option>
             ))}
           </select>
         </div>
 
         {selectedOffice && (
           <div className="fields-container">
-            <h2 className="subtitle">Verification Form for {selectedOffice}</h2>
+            <h2 className="subtitle">Verification Form </h2>
 
             <div className="fields-grid">
               {formFields.map((field, index) => (
@@ -92,6 +92,9 @@ const EditInsuranceForm = () => {
             </div>
           </div>
         )}
+        <div className="button-set">
+          <button type="submit">Submit</button>
+        </div>    
       </div>
     </div>
   );
