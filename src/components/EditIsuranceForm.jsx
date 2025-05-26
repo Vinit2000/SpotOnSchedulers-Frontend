@@ -59,7 +59,11 @@ const EditInsuranceForm = () => {
 
         {selectedOffice && (
           <div className="fields-container">
+<<<<<<< HEAD
             <h2 className="subtitle">Verification Form {selectedOffice} </h2>
+=======
+            <h2 className="subtitle">Verification Form for {selectedOffice}</h2>
+>>>>>>> d259a58307ed46bd69c3afebf2fb1aa02beb30e1
 
             <div className="fields-grid">
               {formFields.map((field, index) => (

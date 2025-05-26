@@ -9,7 +9,18 @@ const EditForm = () => {
     setSelectedOffice(e.target.value);
   };
 
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get("http://localhost:5000/getinsuranceform");
+        setOffices(res.data); // Fixed this line
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    }
 
+    getData();
+  }, []);
 
   return (
     
