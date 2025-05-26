@@ -40,7 +40,7 @@ function MasterForm() {
       <h1>Master Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Date of Verification</label>
             <input
               type="date"
@@ -48,7 +48,7 @@ function MasterForm() {
               value={formData.DateOfVerification}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label>Rep Name</label>
             <input
@@ -79,7 +79,7 @@ function MasterForm() {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Patient DOB</label>
             <input
               type="date"
@@ -87,7 +87,7 @@ function MasterForm() {
               value={formData.PatientDOB}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label>Phone Number</label>
             <input

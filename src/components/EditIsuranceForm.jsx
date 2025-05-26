@@ -1,21 +1,23 @@
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './EditForm.css';
+import axios from 'axios'
 
 const EditInsuranceForm = () => {
-  const offices = ['Office A', 'Office B'];
+  // const offices = ['Office A', 'Office B'];
+  const  [offices,setOffices]=useState([]);
   const [selectedOffice, setSelectedOffice] = useState('');
 
   const [formFields, setFormFields] = useState([
-    { id: 1, label: 'Date of Verification', disabled: false, required: false, customLabel: '' },
+    // { id: 1, label: 'Date of Verification', disabled: false, required: false, customLabel: '' },
     { id: 2, label: 'Rep Name', disabled: false, required: false, customLabel: '' },
     { id: 3, label: 'Reference #', disabled: false, required: false, customLabel: '' },
     { id: 4, label: 'Patient Name', disabled: false, required: false, customLabel: '' },
-    { id: 5, label: 'Patient DOB', disabled: false, required: false, customLabel: '' },
+    // { id: 5, label: 'Patient DOB', disabled: false, required: false, customLabel: '' },
     { id: 6, label: 'Phone Number', disabled: false, required: false, customLabel: '' },
     { id: 7, label: 'Subscriber', disabled: false, required: false, customLabel: '' },
-    { id: 8, label: 'Subscriber DOB', disabled: false, required: false, customLabel: '' },
+    // { id: 8, label: 'Subscriber DOB', disabled: false, required: false, customLabel: '' },
   ]);
 
   const handleFieldChange = (index, field, value) => {
@@ -24,8 +26,21 @@ const EditInsuranceForm = () => {
     setFormFields(updatedFields);
   };
 
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get("http://localhost:5000/getdentalform");
+        setOffices(res.data); // Fixed this line
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    }
+
+    getData();
+  }, []);
+
   return (
-    <div className="form-container">
+    <div className="form-container-1">
       <h1 className="title">Select Form Field</h1>
 
       <div className="form-layout">
@@ -37,14 +52,18 @@ const EditInsuranceForm = () => {
           >
             <option value="">Select Office</option>
             {offices.map((office, index) => (
-              <option key={index} value={office}>{office}</option>
+              <option key={index} value={office.name}>{office.name}</option>
             ))}
           </select>
         </div>
 
         {selectedOffice && (
           <div className="fields-container">
+<<<<<<< HEAD
+            <h2 className="subtitle">Verification Form {selectedOffice} </h2>
+=======
             <h2 className="subtitle">Verification Form for {selectedOffice}</h2>
+>>>>>>> d259a58307ed46bd69c3afebf2fb1aa02beb30e1
 
             <div className="fields-grid">
               {formFields.map((field, index) => (
@@ -77,6 +96,9 @@ const EditInsuranceForm = () => {
             </div>
           </div>
         )}
+        <div className="button-set">
+          <button type="submit">Submit</button>
+        </div>    
       </div>
     </div>
   );

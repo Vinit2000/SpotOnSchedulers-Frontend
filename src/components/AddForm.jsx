@@ -20,6 +20,8 @@ function AddForm() {
     
     // console.log('Form submitted');
   };
+  
+
 
   const addDentalForm=async()=>{
     try{
@@ -38,7 +40,7 @@ function AddForm() {
   }
 
   return (
-    <div className="form-container">
+       <div className="form-container">
       <h2>Add Dental Office</h2>
       <hr />
       <form onSubmit={handleSubmit}>
