@@ -1,10 +1,12 @@
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './EditForm.css';
+import axios from 'axios'
 
 const EditInsuranceForm = () => {
-  const offices = ['Office A', 'Office B'];
+  // const offices = ['Office A', 'Office B'];
+  const  [offices,setOffices]=useState([]);
   const [selectedOffice, setSelectedOffice] = useState('');
 
   const [formFields, setFormFields] = useState([
@@ -24,6 +26,19 @@ const EditInsuranceForm = () => {
     setFormFields(updatedFields);
   };
 
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get("http://localhost:5000/getinsuranceform");
+        setOffices(res.data); // Fixed this line
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    }
+
+    getData();
+  }, []);
+
   return (
     <div className="form-container">
       <h1 className="title">Select Form Field</h1>
@@ -37,7 +52,7 @@ const EditInsuranceForm = () => {
           >
             <option value="">Select Office</option>
             {offices.map((office, index) => (
-              <option key={index} value={office}>{office}</option>
+              <option key={index} value={office}>{office.name}</option>
             ))}
           </select>
         </div>

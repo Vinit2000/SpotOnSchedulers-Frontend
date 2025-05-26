@@ -35,11 +35,8 @@ import ViewForm from './components/ViewForm';
 import FormDetails from './components/FormDetails';
 import EditInsuranceForm from './components/EditIsuranceForm';
 import VerificationForm from './components/VerificationForm';
-<<<<<<< HEAD
 import MasterForm from './components/MasterForm';
-=======
 import AddForm from './components/AddForm';
->>>>>>> 6dbc3c85f5d4734a085addf8b9675478cb3c4cc4
 
 function App() {
   return (
@@ -52,11 +49,8 @@ function App() {
           <Route path="/form-details" element={<FormDetails />} />
           <Route path="/edit-insurance-form" element={<EditInsuranceForm />} />
           <Route path="/verification-form" element={<VerificationForm />} />
-<<<<<<< HEAD
           <Route path="/master-form" element={<MasterForm />} /> {/* ✅ Added Route */}
-=======
           <Route path="/add-dental-office" element={<AddForm/>}/>
->>>>>>> 6dbc3c85f5d4734a085addf8b9675478cb3c4cc4
         </Routes>
       </div>
     </div>

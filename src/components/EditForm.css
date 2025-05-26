@@ -27,6 +27,7 @@ body {
 
 .form-layout {
   display: flex;
+  flex-direction: column;
   gap: 30px;
 }
 
@@ -75,4 +76,7 @@ body {
   border-radius: 8px; 
   border: 1px solid #ddd;
   margin-top: 30px;
+}
+label input{
+  margin: 0 5px;
 }
