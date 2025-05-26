@@ -12,8 +12,9 @@ const EditForm = () => {
 
 
   return (
+    
     <div className="container">
-      <div className="edit-form">
+        <div className="edit-form">
         <h2>Select Office</h2>
         <div className="form-group">
           <label htmlFor="office">Office</label>
