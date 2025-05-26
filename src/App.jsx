@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import ViewForm from './components/ViewForm';
 import FormDeatils from './components/FormDetails';
 import EditForm from './components/EditForm';
+import AddForm from './components/AddForm';
 
 
 function App() {
@@ -14,5 +15,8 @@ function App() {
     </Routes>
   )
 }
+
+
+
 
 export default App;
