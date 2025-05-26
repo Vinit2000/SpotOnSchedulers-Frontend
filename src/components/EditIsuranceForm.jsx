@@ -29,7 +29,7 @@ const EditInsuranceForm = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("http://localhost:5000/getinsuranceform");
+        const res = await axios.get("http://localhost:5000/getdentalform");
         setOffices(res.data); // Fixed this line
       } catch (error) {
         console.log("Error getting data", error);
@@ -52,7 +52,7 @@ const EditInsuranceForm = () => {
           >
             <option value="">Select Office</option>
             {offices.map((office, index) => (
-              <option key={index} value={office}>{office.name}</option>
+              <option key={office._id} value={office.name}>{office.name}</option>
             ))}
           </select>
         </div>
