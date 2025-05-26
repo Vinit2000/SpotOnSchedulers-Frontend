@@ -35,11 +35,8 @@ import ViewForm from './components/ViewForm';
 import FormDetails from './components/FormDetails';
 import EditInsuranceForm from './components/EditIsuranceForm';
 import VerificationForm from './components/VerificationForm';
-<<<<<<< HEAD
-import MasterForm from './components/MasterForm';
-=======
 import AddForm from './components/AddForm';
->>>>>>> 6dbc3c85f5d4734a085addf8b9675478cb3c4cc4
+import MasterForm from './components/MasterForm';
 
 function App() {
   return (
@@ -48,15 +45,12 @@ function App() {
       <div style={{ flexGrow: 1, padding: '20px' }}>
         <Routes>
           <Route path="/" element={<div>Welcome to Dashboard</div>} />
+          <Route path='/master-form' element={<MasterForm/>}/>
           <Route path="/view-insurance-form" element={<ViewForm />} />
           <Route path="/form-details" element={<FormDetails />} />
           <Route path="/edit-insurance-form" element={<EditInsuranceForm />} />
           <Route path="/verification-form" element={<VerificationForm />} />
-<<<<<<< HEAD
-          <Route path="/master-form" element={<MasterForm />} /> {/* ✅ Added Route */}
-=======
           <Route path="/add-dental-office" element={<AddForm/>}/>
->>>>>>> 6dbc3c85f5d4734a085addf8b9675478cb3c4cc4
         </Routes>
       </div>
     </div>
