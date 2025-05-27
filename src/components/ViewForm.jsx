@@ -29,7 +29,7 @@ function ViewForm() {
   }
 
   return (
-    <div className="container">
+    <div className="view-container">
       <h3>View Insurance Form</h3>
       <div className="card">
         <div className="form-group">
