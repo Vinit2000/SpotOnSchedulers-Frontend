@@ -4,31 +4,37 @@ body {
   background-color: #f5f5f5;
 }
 
+/* Ensure the form is centered both vertically and horizontally */
 .edit-container {
-  min-height: 100vh;  /* Full screen height */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
+  box-sizing: border-box;
 }
 
 .edit-form {
   background-color: white;
-  padding: 30px;
-  font-family: Arial, sans-serif;
-  color: #333;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
 }
 
 .title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .form-layout {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .dropdown-container {
@@ -36,11 +42,12 @@ body {
 }
 
 .dropdown {
-  width: 200px;
-  padding: 8px 12px;
+  width: 100%;
+  max-width: 250px;
+  padding: 10px 12px;
   font-size: 16px;
   border: 1px solid #999;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #fff;
   appearance: none;
   cursor: pointer;
@@ -53,7 +60,7 @@ body {
 .subtitle {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .fields-grid {
@@ -67,16 +74,52 @@ body {
   padding: 16px;
   border-radius: 8px;
   background-color: #fff;
+  transition: box-shadow 0.2s ease;
+}
+
+.field-box:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .verification-wrapper {
   background-color: #fafafa;
   padding: 25px;
-  border-radius: 8px; 
+  border-radius: 8px;
   border: 1px solid #ddd;
   margin-top: 30px;
 }
 
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #666;
+}
+
 label input {
   margin: 0 5px;
+}
+
+/* Small adjustments for mobile screens */
+@media (max-width: 500px) {
+  .edit-form {
+    padding: 20px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
 }

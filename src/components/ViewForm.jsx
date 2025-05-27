@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ViewForm.css'; // Optional: add custom styles here
-import axios from 'axios'
+import axios from 'axios';
+import './ViewForm.css';
 
 function ViewForm() {
-  const [office,setOffice]=useState([])
+  const [offices, setOffices] = useState([]);
   const [selectedOffice, setSelectedOffice] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await axios.get("http://localhost:5000/getinsuranceform");
-        setOffice(res.data); // Fixed this line
-      } catch (error) {
-        console.log("Error getting data", error);
-      }
+  const fetchOffices = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/getinsuranceform");
+      setOffices(res.data);
+    } catch (error) {
+      console.error("Error getting data", error);
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    getData();
+  useEffect(() => {
+    fetchOffices();
   }, []);
 
-  const handleOfficeChange = (e) =>{
-    const selectedOffice = e.target.value;
-    if(selectedOffice !== ''){
-      navigate('/form-details', {state:{selectedOffice}});
+  const handleOfficeChange = (e) => {
+    const selectedId = e.target.value;
+    setSelectedOffice(selectedId);
+    if (selectedId) {
+      navigate('/form-details', { state: { selectedOffice: selectedId } });
     }
-  }
+  };
+
+  if (isLoading) return <div>Loading offices...</div>;
 
   return (
     <div className="view-container">
@@ -35,17 +41,16 @@ function ViewForm() {
         <div className="form-group">
           <label>Select Office</label>
           <select
-          
             className="form-control"
             value={selectedOffice}
             onChange={handleOfficeChange}
           >
             <option value="">-- Select Office --</option>
-            {office.map((n) => (
-          <option key={n._id} value={n._id}>
-            {n.name}
-          </option>
-        ))}
+            {offices.map(office => (
+              <option key={office._id} value={office._id}>
+                {office.name}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -53,4 +58,4 @@ function ViewForm() {
   );
 }
 
-export default ViewForm;
+export default ViewForm;

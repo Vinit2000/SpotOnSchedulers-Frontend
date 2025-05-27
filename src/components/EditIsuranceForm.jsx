@@ -1,23 +1,18 @@
-
-
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EditForm.css';
 import axios from 'axios'
 
 const EditInsuranceForm = () => {
-  // const offices = ['Office A', 'Office B'];
-  const  [offices,setOffices]=useState([]);
+  const [offices, setOffices] = useState([]);
   const [selectedOffice, setSelectedOffice] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formFields, setFormFields] = useState([
-    // { id: 1, label: 'Date of Verification', disabled: false, required: false, customLabel: '' },
     { id: 2, label: 'Rep Name', disabled: false, required: false, customLabel: '' },
     { id: 3, label: 'Reference #', disabled: false, required: false, customLabel: '' },
     { id: 4, label: 'Patient Name', disabled: false, required: false, customLabel: '' },
-    // { id: 5, label: 'Patient DOB', disabled: false, required: false, customLabel: '' },
     { id: 6, label: 'Phone Number', disabled: false, required: false, customLabel: '' },
     { id: 7, label: 'Subscriber', disabled: false, required: false, customLabel: '' },
-    // { id: 8, label: 'Subscriber DOB', disabled: false, required: false, customLabel: '' },
   ]);
 
   const handleFieldChange = (index, field, value) => {
@@ -26,11 +21,47 @@ const EditInsuranceForm = () => {
     setFormFields(updatedFields);
   };
 
+  const handleSubmit = async () => {
+    if (!selectedOffice) {
+      alert('Please select an office first');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Find the selected office object
+      const selectedOfficeObj = offices.find(office => office.name === selectedOffice);
+      
+      const dataToSave = {
+        officeName: selectedOffice,
+        officeId: selectedOfficeObj?._id || null,
+        formFields: formFields,
+        updatedAt: new Date().toISOString()
+      };
+
+      // Save to your backend - adjust the endpoint as needed
+      const response = await axios.post("http://localhost:5000/saveinsuranceform", dataToSave);
+      
+      if (response.status === 200 || response.status === 201) {
+        alert('Form configuration saved successfully!');
+        // Optionally reset form or redirect
+        // setSelectedOffice('');
+        // setFormFields(formFields.map(field => ({ ...field, disabled: false, required: false, customLabel: '' })));
+      }
+    } catch (error) {
+      console.error("Error saving form configuration:", error);
+      alert('Error saving form configuration. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   useEffect(() => {
     async function getData() {
       try {
         const res = await axios.get("http://localhost:5000/getdentalform");
-        setOffices(res.data); // Fixed this line
+        setOffices(res.data);
       } catch (error) {
         console.log("Error getting data", error);
       }
@@ -93,7 +124,13 @@ const EditInsuranceForm = () => {
           </div>
         )}
         <div className="button-set">
-          <button type="submit">Submit</button>
+          <button 
+            type="button" 
+            onClick={handleSubmit}
+            disabled={isSubmitting || !selectedOffice}
+          >
+            {isSubmitting ? 'Saving...' : 'Submit'}
+          </button>
         </div>    
       </div>
     </div>
