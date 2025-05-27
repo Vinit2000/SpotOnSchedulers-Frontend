@@ -52,7 +52,7 @@ const EditInsuranceForm = () => {
           >
             <option value="">Select Office</option>
             {offices.map((office, index) => (
-              <option key={index} value={office}>{office.name}</option>
+              <option key={index} value={office.name}>{office.name}</option>
             ))}
           </select>
         </div>
