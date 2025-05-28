@@ -94,31 +94,40 @@ const EditInsuranceForm = () => {
 
             <div className="fields-grid">
               {formFields.map((field, index) => (
-                <div key={field.id} className="field-box">
-                  <h3 className="field-label">{field.label}</h3>
-
-                  <label><input
-                    type="checkbox"
-                    checked={field.disabled}
-                    onChange={(e) => handleFieldChange(index, 'disabled', e.target.checked)}
-                  /> Disabled</label>
-
-                  <label><input
-                    type="checkbox"
-                    checked={field.required}
-                    onChange={(e) => handleFieldChange(index, 'required', e.target.checked)}
-                  /> Required</label>
-
-                  <div className="custom-label">
-                    <label>Custom Label</label>
+                <div className="field-box">
+                <h3 className="field-label">{field.label}</h3>
+              
+                <div className="checkbox-group">
+                  <label>
                     <input
-                      type="text"
-                      value={field.customLabel}
-                      onChange={(e) => handleFieldChange(index, 'customLabel', e.target.value)}
-                      placeholder="Enter custom label"
+                      type="checkbox"
+                      checked={field.disabled}
+                      onChange={(e) => handleFieldChange(index, 'disabled', e.target.checked)}
                     />
-                  </div>
+                    Disabled
+                  </label>
+              
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={field.required}
+                      onChange={(e) => handleFieldChange(index, 'required', e.target.checked)}
+                    />
+                    Required
+                  </label>
                 </div>
+              
+                <div className="custom-label">
+                  <label>Custom Label</label>
+                  <input
+                    type="text"
+                    value={field.customLabel}
+                    onChange={(e) => handleFieldChange(index, 'customLabel', e.target.value)}
+                    placeholder="Enter custom label"
+                  />
+                </div>
+              </div>
+              
               ))}
             </div>
           </div>
