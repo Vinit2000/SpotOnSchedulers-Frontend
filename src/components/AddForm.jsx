@@ -63,8 +63,10 @@ function AddForm() {
           </div>
         </div>
         <div className="button-container">
-          <button type="button" onClick={addDentalForm}>Submit Form</button>
+          <button type="submit" onClick={addDentalForm}>Submit Form</button>
         </div>
+
+        
       </form>
     </div>
   );
