@@ -40,9 +40,9 @@ import AddForm from './components/AddForm';
 
 function App() {
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex',height:'100vh'}}>
       <Sidebar />
-      <div style={{ flexGrow: 1, padding: '20px' }}>
+      <div style={{ flexGrow: 1, padding: '20px' , overflowY:'auto'}}>
         <Routes>
           <Route path="/" element={<div>Welcome to Dashboard</div>} />
           <Route path='/master-form' element={<MasterForm/>}/>
