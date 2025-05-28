@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // <<<<<<< HEAD
 // import React from 'react';
 // import {Routes, Route} from 'react-router-dom';
@@ -8,6 +9,9 @@
 // =======
 // // import React from 'react';
 // >>>>>>> 1aa5c770a5a123e2da3c3fa3a4646ab8e6e429c9
+=======
+// import React from 'react';
+>>>>>>> beb9979ea9e8d1e5ef3712332411595b290ca7db
 
 // import { Routes, Route } from 'react-router-dom';
 // import Sidebar from './components/Sidebar';
@@ -59,7 +63,7 @@ function App() {
           <Route path="/form-details" element={<FormDetails />} />
           <Route path="/edit-insurance-form" element={<EditInsuranceForm />} />
           <Route path="/verification-form" element={<VerificationForm />} />
-          <Route path="/master-form" element={<MasterForm />} /> {/* ✅ Added Route */}
+          <Route path="/master-form" element={<MasterForm />} />
           <Route path="/add-dental-office" element={<AddForm/>}/>
         </Routes>
       </div>
