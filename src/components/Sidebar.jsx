@@ -62,7 +62,7 @@ const Sidebar = () => {
           )}
         </div>
 
-        <NavLink to="/task-history" className="nav-item">🕒 Task History</NavLink>
+        {/* <NavLink to="/task-history" className="nav-item">🕒 Task History</NavLink> */}
       </nav>
     </div>
   );
