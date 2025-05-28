@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// import React from 'react';
+>>>>>>> 182f26b07fd646fb314cec4ad06660d09d964bb1
 
 
 import React from 'react';
