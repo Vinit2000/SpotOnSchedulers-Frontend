@@ -38,6 +38,7 @@
 .role {
   margin-top: 10px;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .nav-links {
@@ -64,6 +65,9 @@
   color: inherit;
   cursor: pointer;
   padding: 0;
+}
+button.nav-item.dropdown-toggle::after{
+  display: none;
 }
 
 button.nav-item.dropdown-toggle::after{
