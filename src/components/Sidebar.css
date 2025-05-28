@@ -66,6 +66,10 @@
   padding: 0;
 }
 
+button.nav-item.dropdown-toggle::after{
+  display: none;
+}
+
 .dropdown-links {
   padding-left: 15px;
   margin-top: 5px;
