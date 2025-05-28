@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import React from 'react';
 
 // import { Routes, Route } from 'react-router-dom';
@@ -28,6 +29,10 @@
 
 // }
 // export default App;
+=======
+
+
+>>>>>>> 1300a7ac513514705549ede81e63f60a20dd6898
 
 =======
 >>>>>>> c862d75964cea5c4d93c159dfef78c522929f837
