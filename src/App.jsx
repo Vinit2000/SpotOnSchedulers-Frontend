@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-// <<<<<<< HEAD
 // import React from 'react';
-// import {Routes, Route} from 'react-router-dom';
-// import ViewForm from './components/ViewForm';
-// import FormDeatils from './components/FormDetails';
-// import EditForm from './components/EditForm';
-// import AddForm from './components/AddForm';
-// =======
-// // import React from 'react';
-// >>>>>>> 1aa5c770a5a123e2da3c3fa3a4646ab8e6e429c9
-=======
-// import React from 'react';
->>>>>>> beb9979ea9e8d1e5ef3712332411595b290ca7db
 
 // import { Routes, Route } from 'react-router-dom';
 // import Sidebar from './components/Sidebar';
