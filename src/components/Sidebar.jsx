@@ -62,12 +62,16 @@ const Sidebar = () => {
           )}
         </div>
 
+<<<<<<< HEAD
         <NavLink
           to="/task-history"
           className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
         >
           🕒 Task History
         </NavLink>
+=======
+        <NavLink to="/task-history" className="nav-item">🕒 Task History</NavLink>
+>>>>>>> 2eb0257525d8216e051df6e8b041df4a778c4b3e
       </nav>
     </div>
   );

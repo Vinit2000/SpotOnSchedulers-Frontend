@@ -92,7 +92,14 @@ button.nav-item.dropdown-toggle::after {
   display: none;
 }
 
+<<<<<<< HEAD
 /* Dropdown items */
+=======
+button.nav-item.dropdown-toggle::after{
+  display: none;
+}
+
+>>>>>>> 2eb0257525d8216e051df6e8b041df4a778c4b3e
 .dropdown-links {
   padding-left: 15px;
   margin-top: 5px;
