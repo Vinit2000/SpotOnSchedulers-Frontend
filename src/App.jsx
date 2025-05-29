@@ -19,13 +19,9 @@ function App() {
           <Route path="/form-details" element={<FormDetails />} />
           <Route path="/edit-insurance-form" element={<EditInsuranceForm />} />
           <Route path="/verification-form" element={<VerificationForm />} />
-<<<<<<< HEAD
-          <Route path="/master-form" element={<MasterForm />} />
-=======
 
           <Route path="/master-form" element={<MasterForm />} /> {/* ✅ Added Route */}
 
->>>>>>> 257b5fcd1c1853ce810253221e9a374266904859
           <Route path="/add-dental-office" element={<AddForm/>}/>
 
         </Routes>
