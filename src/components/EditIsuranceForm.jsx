@@ -60,7 +60,7 @@ const EditInsuranceForm = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("http://localhost:5000/getdentalform");
+        const res = await axios.get("https://sos-backend-jwug.onrender.com/getdentalform");
         setOffices(res.data);
       } catch (error) {
         console.log("Error getting data", error);
