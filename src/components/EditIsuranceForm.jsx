@@ -41,7 +41,7 @@ const EditInsuranceForm = () => {
       };
 
       // Save to your backend - adjust the endpoint as needed
-      const response = await axios.post("http://localhost:5000/saveinsuranceform", dataToSave);
+      const response = await axios.post("https://sos-backend-jwug.onrender.com/saveinsuranceform", dataToSave);
       
       if (response.status === 200 || response.status === 201) {
         alert('Form configuration saved successfully!');
