@@ -11,7 +11,7 @@ function ViewForm() {
 
   const fetchOffices = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/getinsuranceform");
+      const res = await axios.get("http://localhost:5000/getdentalform");
       setOffices(res.data);
     } catch (error) {
       console.error("Error getting data", error);
