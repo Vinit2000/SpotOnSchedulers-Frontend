@@ -41,7 +41,7 @@ const EditInsuranceForm = () => {
       };
 
       // Save to your backend - adjust the endpoint as needed
-      const response = await axios.post("https://sos-backend-jwug.onrender.com/saveinsuranceform", dataToSave);
+      const response = await axios.post("https://sos-backend-qhl0.onrender.com/saveinsuranceform", dataToSave);
       
       if (response.status === 200 || response.status === 201) {
         alert('Form configuration saved successfully!');
@@ -60,7 +60,7 @@ const EditInsuranceForm = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("https://sos-backend-jwug.onrender.com/getdentalform");
+        const res = await axios.get("https://sos-backend-qhl0.onrender.com/getdentalform");
         setOffices(res.data);
       } catch (error) {
         console.log("Error getting data", error);

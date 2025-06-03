@@ -11,7 +11,7 @@ function ViewForm() {
 
   const fetchOffices = async () => {
     try {
-      const res = await axios.get("https://sos-backend-jwug.onrender.com/getdentalform");
+      const res = await axios.get("https://sos-backend-qhl0.onrender.com/getdentalform");
       setOffices(res.data);
     } catch (error) {
       console.error("Error getting data", error);
