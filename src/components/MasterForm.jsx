@@ -99,7 +99,7 @@ function MasterForm() {
           </div>
         </div>
 
-        {/* <div className="form-row">
+        <div className="form-row">
           <div className="form-group">
             <label>Member ID</label>
             <input
@@ -109,7 +109,7 @@ function MasterForm() {
               onChange={handleChange}
             />
           </div>
-        </div> */}
+        </div>
 
         <div className="button-set">
           <button type="submit">Submit</button>
