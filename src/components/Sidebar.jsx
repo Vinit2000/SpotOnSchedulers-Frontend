@@ -62,10 +62,8 @@ const Sidebar = () => {
           )}
         </div>
 
-<<<<<<< HEAD
-=======
-        {/* <NavLink to="/task-history" className="nav-item">🕒 Task History</NavLink> */}
->>>>>>> 162ab94f56423f0188ff6ce7a9f7e5eba0dfd97a
+
+       
       </nav>
     </div>
   );
