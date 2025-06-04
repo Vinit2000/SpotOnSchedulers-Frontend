@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <div className="logo">Spot on<br />Schedulers</div>
+        <div className="logo">Spot on Schedulers</div>
         <div className="avatar-container">
           <div className="avatar">👤</div>
           <p className="role">SUPER ADMIN</p>
@@ -61,9 +61,12 @@ const Sidebar = () => {
             </div>
           )}
         </div>
+<<<<<<< HEAD
 
 
        
+=======
+>>>>>>> 9353a01a0a2f892116492828e1bb077fa69fee97
       </nav>
     </div>
   );
