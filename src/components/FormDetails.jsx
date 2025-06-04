@@ -30,7 +30,7 @@ const handleChange = (e) =>{
   };
   const handleSubmit=async()=>{
     try{
-      const res=await axios.post("http://localhost:5000/addinsuranceform",formData);
+      const res=await axios.post("https://sos-backend-qhl0.onrender.com/addinsuranceform",formData);
       alert("Form Submitted");
       setFormData({
         name:'',

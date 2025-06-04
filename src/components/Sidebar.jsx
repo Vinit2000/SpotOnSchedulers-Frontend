@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <div className="logo">Spot on<br />Schedulers</div>
+        <div className="logo">Spot on Schedulers</div>
         <div className="avatar-container">
           <div className="avatar">👤</div>
           <p className="role">SUPER ADMIN</p>
@@ -61,8 +61,6 @@ const Sidebar = () => {
             </div>
           )}
         </div>
-
-        {/* <NavLink to="/task-history" className="nav-item">🕒 Task History</NavLink> */}
       </nav>
     </div>
   );
