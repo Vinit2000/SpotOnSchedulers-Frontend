@@ -25,7 +25,6 @@ const EditInsuranceForm = () => {
   };
 
   const handleSubmit = async () => {
-<<<<<<< HEAD
   if (!selectedOffice) {
     alert('Please select an office first');
     return;
@@ -39,13 +38,6 @@ const EditInsuranceForm = () => {
     if (!selectedOfficeObj) {
       alert('Selected office not found.');
       setIsSubmitting(false);
-=======
-    setErrorMessage('');
-    setSuccessMessage('');
-
-    if (!selectedOffice) {
-      setErrorMessage('Please select an office first.');
->>>>>>> b7ab17bc21a155f07509b0442c47c2b96f4f275f
       return;
     }
 
@@ -57,7 +49,6 @@ const EditInsuranceForm = () => {
       // Add more if needed
     };
 
-<<<<<<< HEAD
     const updatePayload = {};
 
     formFields.forEach(field => {
@@ -75,36 +66,6 @@ const EditInsuranceForm = () => {
 
     if (response.status === 200) {
       alert('Form configuration saved successfully!');
-=======
-    try {
-      const selectedOfficeObj = offices.find(office => office.name === selectedOffice);
-
-      const dataToSave = {
-        officeName: selectedOffice,
-        officeId: selectedOfficeObj?._id || null,
-        formFields: formFields,
-        updatedAt: new Date().toISOString()
-      };
-
-      const response = await fetch("https://sos-backend-qhl0.onrender.com/saveinsuranceform", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataToSave),
-      });
-
-      if (response.ok) {
-        setSuccessMessage('Form configuration saved successfully!');
-      } else {
-        const errorData = await response.json();
-        setErrorMessage(`Error saving form configuration: ${errorData.message || response.statusText}. Please check the backend endpoint.`);
-        console.error("Server error response:", errorData);
-      }
-    } catch (error) {
-      setErrorMessage('Network error or unexpected issue. Please try again.');
-      console.error("Error saving form configuration:", error);
-    } finally {
-      setIsSubmitting(false);
->>>>>>> b7ab17bc21a155f07509b0442c47c2b96f4f275f
     }
   } catch (error) {
     console.error("Error saving form configuration:", error);
@@ -121,20 +82,8 @@ const EditInsuranceForm = () => {
       setIsLoadingOffices(true);
       setErrorMessage('');
       try {
-<<<<<<< HEAD
         const res = await axios.get("http://localhost:5000/getdentalform");
         setOffices(res.data);
-=======
-        const response = await fetch("https://sos-backend-qhl0.onrender.com/getdentalform");
-        if (response.ok) {
-          const data = await response.json();
-          setOffices(data);
-        } else {
-          const errorData = await response.json();
-          setErrorMessage(`Failed to load offices: ${errorData.message || response.statusText}`);
-          console.error("Error fetching offices:", errorData);
-        }
->>>>>>> b7ab17bc21a155f07509b0442c47c2b96f4f275f
       } catch (error) {
         setErrorMessage('Failed to connect to the office data service.');
         console.error("Error getting data:", error);

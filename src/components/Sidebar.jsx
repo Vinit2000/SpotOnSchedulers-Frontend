@@ -61,12 +61,9 @@ const Sidebar = () => {
             </div>
           )}
         </div>
-<<<<<<< HEAD
 
 
        
-=======
->>>>>>> 9353a01a0a2f892116492828e1bb077fa69fee97
       </nav>
     </div>
   );
