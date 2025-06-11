@@ -95,7 +95,7 @@ function AddForm() {
 
     try {
       const res = await axios.post(
-        "https://sos-backend-qhl0.onrender.com/adddentalform",
+        "http://localhost:5000/adddentalform",
         formData
       );
       setFormData({

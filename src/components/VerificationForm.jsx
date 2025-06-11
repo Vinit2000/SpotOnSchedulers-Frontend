@@ -9,7 +9,7 @@ const FormField = ({ label, officeId, onUpdate }) => {
 
   const handleSave = async () => {
     try {
-      await axios.put('https://sos-backend-qhl0.onrender.com/getinsuranceformconfig', {
+      await axios.put('http://localhost:5000/getinsuranceformconfig', {
         [label]: { disabled, required, customLabel }
       });
       onUpdate(); // Trigger parent to refresh data

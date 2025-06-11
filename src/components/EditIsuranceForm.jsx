@@ -22,45 +22,62 @@ const EditInsuranceForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!selectedOffice) {
-      alert('Please select an office first');
+  if (!selectedOffice) {
+    alert('Please select an office first');
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    const selectedOfficeObj = offices.find(office => office.name === selectedOffice);
+
+    if (!selectedOfficeObj) {
+      alert('Selected office not found.');
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
+    const fieldMapping = {
+      'Patient Name': 'isNameDisabled',
+      'Rep Name': 'isRepresentativeNameDisabled',
+      'Reference #': 'isReferenceDisabled',
+      'Phone Number': 'isPhoneNumberDisabled',
+      // Add more if needed
+    };
 
-    try {
-      // Find the selected office object
-      const selectedOfficeObj = offices.find(office => office.name === selectedOffice);
-      
-      const dataToSave = {
-        officeName: selectedOffice,
-        officeId: selectedOfficeObj?._id || null,
-        formFields: formFields,
-        updatedAt: new Date().toISOString()
-      };
+    const updatePayload = {};
 
-      // Save to your backend - adjust the endpoint as needed
-      const response = await axios.post("https://sos-backend-qhl0.onrender.com/saveinsuranceform", dataToSave);
-      
-      if (response.status === 200 || response.status === 201) {
-        alert('Form configuration saved successfully!');
-        // Optionally reset form or redirect
-        // setSelectedOffice('');
-        // setFormFields(formFields.map(field => ({ ...field, disabled: false, required: false, customLabel: '' })));
+    formFields.forEach(field => {
+      const backendField = fieldMapping[field.label];
+      if (backendField) {
+        updatePayload[backendField] = !!field.disabled; // disabled flag
+
+        // Optional if backend supports:
+        // updatePayload[`${backendField}Required`] = !!field.required;
+        // updatePayload[`${backendField}CustomLabel`] = field.customLabel || '';
       }
-    } catch (error) {
-      console.error("Error saving form configuration:", error);
-      alert('Error saving form configuration. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    });
+
+    const response = await axios.put(`http://localhost:5000/editinsuranceform/${selectedOfficeObj._id}`, updatePayload);
+
+    if (response.status === 200) {
+      alert('Form configuration saved successfully!');
     }
-  };
+  } catch (error) {
+    console.error("Error saving form configuration:", error);
+    alert('Error saving form configuration. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
 
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("https://sos-backend-qhl0.onrender.com/getdentalform");
+        const res = await axios.get("http://localhost:5000/getdentalform");
         setOffices(res.data);
       } catch (error) {
         console.log("Error getting data", error);
