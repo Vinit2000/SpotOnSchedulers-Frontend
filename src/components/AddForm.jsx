@@ -25,7 +25,11 @@
 
 //   const addDentalForm=async()=>{
 //     try{
+<<<<<<< HEAD
+//       const res= await axios.post("http://localhost:5000/adddentalform",formData);
+=======
 //       const res= await axios.post("https://sos-backend-jwug.onrender.com/adddentalform",formData);
+>>>>>>> 5a9119077685b11e3bfdb00b9aa313d6ed739227
 //       setFormData({
 //         name:'',
 //         email:'',
@@ -63,16 +67,27 @@
 //           </div>
 //         </div>
 //         <div className="button-container">
+<<<<<<< HEAD
+//           <button type="button" onClick={addDentalForm}>Submit Form</button>
+//         </div>
+=======
 //           <button type="submit" onClick={addDentalForm}>Submit Form</button>
 //         </div>
 
         
+>>>>>>> 5a9119077685b11e3bfdb00b9aa313d6ed739227
 //       </form>
 //     </div>
 //   );
 // }
 
 // export default AddForm;
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 5a9119077685b11e3bfdb00b9aa313d6ed739227
 import React, { useState } from 'react';
 import './AddForm.css';
 import axios from 'axios';
@@ -91,6 +106,30 @@ function AddForm() {
   };
 
   const handleSubmit = async (event) => {
+<<<<<<< HEAD
+    event.preventDefault(); // prevent page refresh
+
+    try {
+      const res = await axios.post("http://localhost:5000/adddentalform", formData);
+
+      // Optional: Check if res.data confirms success
+      if (res.status === 200) {
+        alert("Form submitted successfully!");
+
+        // Reset form fields
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+      } else {
+        alert("Failed to submit form.");
+      }
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      alert("An error occurred while submitting the form.");
+=======
     event.preventDefault(); // Prevents page reload
 
     try {
@@ -108,6 +147,7 @@ function AddForm() {
     } catch (error) {
       console.error("Error submitting data:", error);
       alert("Error submitting data");
+>>>>>>> 5a9119077685b11e3bfdb00b9aa313d6ed739227
     }
   };
 
@@ -171,4 +211,9 @@ function AddForm() {
 }
 
 export default AddForm;
+<<<<<<< HEAD
+
+
+=======
   
+>>>>>>> 5a9119077685b11e3bfdb00b9aa313d6ed739227
