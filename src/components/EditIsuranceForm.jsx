@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './EditForm.css';
-import axios from 'axios'
 
 const EditInsuranceForm = () => {
   const [offices, setOffices] = useState([]);
   const [selectedOffice, setSelectedOffice] = useState('');
+  const [isLoadingOffices, setIsLoadingOffices] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const [formFields, setFormFields] = useState([
     { id: 2, label: 'Rep Name', disabled: false, required: false, customLabel: '' },
@@ -16,63 +17,87 @@ const EditInsuranceForm = () => {
   ]);
 
   const handleFieldChange = (index, field, value) => {
+    setErrorMessage('');
+    setSuccessMessage('');
     const updatedFields = [...formFields];
     updatedFields[index][field] = value;
     setFormFields(updatedFields);
   };
 
   const handleSubmit = async () => {
-    if (!selectedOffice) {
-      alert('Please select an office first');
+  if (!selectedOffice) {
+    alert('Please select an office first');
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    const selectedOfficeObj = offices.find(office => office.name === selectedOffice);
+
+    if (!selectedOfficeObj) {
+      alert('Selected office not found.');
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
+    const fieldMapping = {
+      'Patient Name': 'isNameDisabled',
+      'Rep Name': 'isRepresentativeNameDisabled',
+      'Reference #': 'isReferenceDisabled',
+      'Phone Number': 'isPhoneNumberDisabled',
+      // Add more if needed
+    };
 
-    try {
-      // Find the selected office object
-      const selectedOfficeObj = offices.find(office => office.name === selectedOffice);
-      
-      const dataToSave = {
-        officeName: selectedOffice,
-        officeId: selectedOfficeObj?._id || null,
-        formFields: formFields,
-        updatedAt: new Date().toISOString()
-      };
+    const updatePayload = {};
 
-      // Save to your backend - adjust the endpoint as needed
-      const response = await axios.post("https://sos-backend-jwug.onrender.com/saveinsuranceform", dataToSave);
-      
-      if (response.status === 200 || response.status === 201) {
-        alert('Form configuration saved successfully!');
-        // Optionally reset form or redirect
-        // setSelectedOffice('');
-        // setFormFields(formFields.map(field => ({ ...field, disabled: false, required: false, customLabel: '' })));
+    formFields.forEach(field => {
+      const backendField = fieldMapping[field.label];
+      if (backendField) {
+        updatePayload[backendField] = !!field.disabled; // disabled flag
+
+        // Optional if backend supports:
+        // updatePayload[`${backendField}Required`] = !!field.required;
+        // updatePayload[`${backendField}CustomLabel`] = field.customLabel || '';
       }
-    } catch (error) {
-      console.error("Error saving form configuration:", error);
-      alert('Error saving form configuration. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    });
+
+    const response = await axios.put(`http://localhost:5000/editinsuranceform/${selectedOfficeObj._id}`, updatePayload);
+
+    if (response.status === 200) {
+      alert('Form configuration saved successfully!');
     }
-  };
+  } catch (error) {
+    console.error("Error saving form configuration:", error);
+    alert('Error saving form configuration. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
 
   useEffect(() => {
-    async function getData() {
+    const getOffices = async () => {
+      setIsLoadingOffices(true);
+      setErrorMessage('');
       try {
-        const res = await axios.get("https://sos-backend-jwug.onrender.com/getdentalform");
+        const res = await axios.get("http://localhost:5000/getdentalform");
         setOffices(res.data);
       } catch (error) {
-        console.log("Error getting data", error);
+        setErrorMessage('Failed to connect to the office data service.');
+        console.error("Error getting data:", error);
+      } finally {
+        setIsLoadingOffices(false);
       }
-    }
-
-    getData();
+    };
+    getOffices();
   }, []);
 
   return (
-    <div className="form-container-1">
-      <h1 className="title">Select Form Field</h1>
+    <div className="edit-container">
+      <div className="edit-form">
+        <h1 className="title">Select Form Field</h1>
 
       <div className="form-layout">
         <div className="dropdown-container">
@@ -132,15 +157,94 @@ const EditInsuranceForm = () => {
             </div>
           </div>
         )}
-        <div className="button-set">
-          <button 
-            type="button" 
+        {errorMessage && (
+          <div className="alert-error" role="alert">
+            <span>{errorMessage}</span>
+          </div>
+        )}
+
+        <div className="form-layout">
+          <div className="dropdown-container">
+            <label htmlFor="office-select">Select Office:</label>
+            <select
+              id="office-select"
+              value={selectedOffice}
+              onChange={(e) => {
+                setSelectedOffice(e.target.value);
+                setErrorMessage('');
+                setSuccessMessage('');
+              }}
+              className="dropdown"
+              disabled={isLoadingOffices}
+            >
+              <option value="">
+                {isLoadingOffices ? 'Loading Offices...' : 'Select Office'}
+              </option>
+              {offices.map((office, index) => (
+                <option key={index} value={office.name}>
+                  {office.name}
+                </option>
+              ))}
+            </select>
+            {isLoadingOffices && (
+              <p className="dropdown-loading">Fetching offices...</p>
+            )}
+          </div>
+
+          {selectedOffice && (
+            <div className="fields-container">
+              <h2 className="subtitle">
+                Verification Form for <span className="subtitle-office">{selectedOffice}</span>
+              </h2>
+              <div className="fields-grid">
+                {formFields.map((field, index) => (
+                  <div key={field.id} className="field-box">
+                    <h3 className="field-label">{field.label}</h3>
+                    <div className="field-checkboxes">
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={field.disabled}
+                          onChange={(e) => handleFieldChange(index, 'disabled', e.target.checked)}
+                        />
+                        <span>Disabled</span>
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={field.required}
+                          onChange={(e) => handleFieldChange(index, 'required', e.target.checked)}
+                        />
+                        <span>Required</span>
+                      </label>
+                    </div>
+                    <div>
+                      <label htmlFor={`custom-label-${field.id}`}>Custom Label:</label>
+                      <input
+                        id={`custom-label-${field.id}`}
+                        type="text"
+                        value={field.customLabel}
+                        onChange={(e) => handleFieldChange(index, 'customLabel', e.target.value)}
+                        placeholder="Enter custom label"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="submit-container">
+          <button
+            type="button"
             onClick={handleSubmit}
             disabled={isSubmitting || !selectedOffice}
+            className={`submit-btn${isSubmitting || !selectedOffice ? ' disabled' : ''}`}
           >
-            {isSubmitting ? 'Saving...' : 'Submit'}
+            {isSubmitting ? 'Saving...' : 'Submit Configuration'}
           </button>
-        </div>    
+        </div>
       </div>
     </div>
   );

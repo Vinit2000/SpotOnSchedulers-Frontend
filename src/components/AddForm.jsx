@@ -25,7 +25,7 @@
 
 //   const addDentalForm=async()=>{
 //     try{
-//       const res= await axios.post("https://sos-backend-jwug.onrender.com/adddentalform",formData);
+//       const res= await axios.post("http://localhost:5000/adddentalform",formData);
 //       setFormData({
 //         name:'',
 //         email:'',
@@ -63,16 +63,17 @@
 //           </div>
 //         </div>
 //         <div className="button-container">
-//           <button type="submit" onClick={addDentalForm}>Submit Form</button>
+//           <button type="button" onClick={addDentalForm}>Submit Form</button>
 //         </div>
-
-        
 //       </form>
 //     </div>
 //   );
 // }
 
 // export default AddForm;
+
+
+
 import React, { useState } from 'react';
 import './AddForm.css';
 import axios from 'axios';
@@ -91,23 +92,28 @@ function AddForm() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevents page reload
+    event.preventDefault(); // prevent page refresh
 
     try {
-      const res = await axios.post(
-        "https://sos-backend-jwug.onrender.com/adddentalform",
-        formData
-      );
-      setFormData({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      });
-      alert("Form submitted successfully!");
+      const res = await axios.post("http://localhost:5000/adddentalform", formData);
+
+      // Optional: Check if res.data confirms success
+      if (res.status === 200) {
+        alert("Form submitted successfully!");
+
+        // Reset form fields
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+      } else {
+        alert("Failed to submit form.");
+      }
     } catch (error) {
       console.error("Error submitting data:", error);
-      alert("Error submitting data");
+      alert("An error occurred while submitting the form.");
     }
   };
 
@@ -171,4 +177,5 @@ function AddForm() {
 }
 
 export default AddForm;
-  
+
+
