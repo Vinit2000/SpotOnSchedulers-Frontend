@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './FormDetails.css';
 import axios from 'axios'
-
 const FormDetails = () => {
   const [formData, setFormData] = useState({
     name:'',
@@ -14,18 +13,14 @@ const FormDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const selectedOffice = location.state?.selectedOffice || "";
-
 useEffect(() => {
   if (!selectedOffice) {
     navigate('/');
   }
 }, [selectedOffice, navigate]);
-
 if (!selectedOffice) {
   return null;
 }
-
-
 const handleChange = (e) =>{
     const {name, value} = e.target;
     setFormData((prevData)=>({
@@ -33,11 +28,9 @@ const handleChange = (e) =>{
       [name]:value
     }));
   };
-
-  
   const handleSubmit=async()=>{
     try{
-      const res=await axios.post("http://localhost:5000/addinsuranceform",formData);
+      const res=await axios.post("https://sos-backend-jwug.onrender.com/addinsuranceform",formData);
       alert("Form Submitted");
       setFormData({
         name:'',
@@ -51,7 +44,6 @@ const handleChange = (e) =>{
       console.log("Error submitting data");
     }
   }
-
   return (
     <div className="form-container">
       <h2>View Insurance Form</h2>
@@ -69,7 +61,6 @@ const handleChange = (e) =>{
           <input type="text" placeholder="Patient Name" onChange={handleChange} name='name' value={formData.name}/>
         </div>
       </div>
-
       <div className="form-row">
         <div className="form-group">
           <label>Phone Number</label>
@@ -80,12 +71,10 @@ const handleChange = (e) =>{
           <input type="text" placeholder="Member ID" onChange={handleChange} name='patientId' value={formData.patientId}/>
         </div>
       </div>
-
       <div className="button-container">
         <button type="submit" onClick={handleSubmit}>Submit Form</button>
       </div>
     </div>
   );
 };
-
 export default FormDetails;
